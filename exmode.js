@@ -1,17 +1,13 @@
 $(document).ready(function() {
     //determinate keypresses
-    $("body").keydown(function(e){
-        if ($(".ui-state-highlight").not('.ui-cell-editing').length==1) {
-            var cell = $(".ui-state-highlight").not('.ui-cell-editing');
-            if (e.key=='Enter') {
-                cell.click();
-            }
-        }
-    });
+
     $("body").keyup(function(e){
         //check for every highlighted cell
         if ($(".ui-state-highlight").not('.ui-cell-editing').length==1) {
             var cell = $(".ui-state-highlight").not('.ui-cell-editing');
+            if (e.key=='F2') {
+                cell.click();
+            }
             if (e.key=='ArrowRight') {
                 if (cell.next().length==1) {
                     cell.removeClass('ui-state-highlight');
