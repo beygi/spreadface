@@ -8,30 +8,42 @@ $(document).ready(function() {
             if (e.key=='F2') {
                 cell.click();
             }
-            if (e.key=='ArrowRight') {
+            else if (e.key=='ArrowRight') {
                 if (cell.next().length==1) {
                     cell.removeClass('ui-state-highlight');
                     cell.next().addClass('ui-state-highlight');
                 }
             }
-            if (e.key=='ArrowLeft') {
+            else if (e.key=='ArrowLeft') {
                 if (cell.prev().length==1) {
                     cell.removeClass('ui-state-highlight');
                     cell.prev().addClass('ui-state-highlight');
                 }
             }
-            if (e.key=='ArrowDown' || e.key=='Enter') {
+            else if (e.key=='ArrowDown' || e.key=='Enter') {
                 if (cell.parent().next().length==1) {
                     cell.removeClass('ui-state-highlight');
                     cell.parent().next().find('td').eq(cell.index()).addClass('ui-state-highlight');
                 }
             }
-            if (e.key=='ArrowUp') {
+            else if (e.key=='ArrowUp') {
                 if (cell.parent().prev().length==1) {
                     cell.removeClass('ui-state-highlight');
                     cell.parent().prev().find('td').eq(cell.index()).addClass('ui-state-highlight');
                 }
             }
+			else if(e.key != 'Escape')
+			{
+				//fetch key
+
+				cell.click();
+				console.log(e);
+				if (!e.metaKey && !e.shiftKey) {
+					cell.find('input').val(e.key);
+				}
+
+
+			}
 
         }
     });
