@@ -35,14 +35,14 @@ $(document).ready(function() {
             if (e.key == 'F2') {
                 cell.click();
             } else if (e.key == 'ArrowRight') {
-                if (cell.next().length == 1) {
-                    cell.removeClass('ui-state-highlight');
-                    cell.next().addClass('ui-state-highlight');
-                }
-            } else if (e.key == 'ArrowLeft') {
                 if (cell.prev().length == 1) {
                     cell.removeClass('ui-state-highlight');
                     cell.prev().addClass('ui-state-highlight');
+                }
+            } else if (e.key == 'ArrowLeft') {
+				if (cell.next().length == 1) {
+                    cell.removeClass('ui-state-highlight');
+                    cell.next().addClass('ui-state-highlight');
                 }
             } else if (e.key == 'ArrowDown' || e.key == 'Enter') {
                 if (cell.parent().next().length == 1) {
@@ -62,27 +62,11 @@ $(document).ready(function() {
         }
     });
 
-
-    $('.ui-cell-editor-output').attrchange({
-        trackValues: true,
-        /* Default to false, if set to true the event object is
-				updated with old and new value.*/
-        callback: function(event) {
-            if (event.newValue == 'display: block;') {
-                //console.log($(this).parent().parent());
-                //$(this).parent().parent().removeClass('ui-state-highlight');
-
-                $(this).parent().parent().addClass('ui-state-highlight');
-                //if ($(this).parent().parent().parent().next().length==1) {
-                //    $(this).parent().parent().removeClass('ui-state-highlight');
-                //    $(this).parent().parent().parent().next().find('td').eq($(this).index()).click();
-                //}
-            }
-        }
-    });
+    fixCells();
 
     $("body").delegate(".ui-editable-column", "click", function(e) {
         $('.ui-editable-column').not(this).removeClass('ui-state-highlight');
+		fixCells();
     });
 
     $("body").delegate("td.ui-state-highlight", "keyup", function(e) {
@@ -97,9 +81,29 @@ $(document).ready(function() {
 });
 
 
+/*
+ fix cells function , it should call after add table
+*/
 
+    function fixCells() {
+		$('.ui-cell-editor-output').attrchange({
+			trackValues: true,
+			/* Default to false, if set to true the event object is
+					updated with old and new value.*/
+			callback: function(event) {
+				if (event.newValue == 'display: block;') {
+					//console.log($(this).parent().parent());
+					//$(this).parent().parent().removeClass('ui-state-highlight');
 
-
+					$(this).parent().parent().addClass('ui-state-highlight');
+					//if ($(this).parent().parent().parent().next().length==1) {
+					//    $(this).parent().parent().removeClass('ui-state-highlight');
+					//    $(this).parent().parent().parent().next().find('td').eq($(this).index()).click();
+					//}
+				}
+			}
+		});
+	}
 /*
 A simple jQuery function that can add listeners on attribute change.
 http://meetselva.github.io/attrchange/
