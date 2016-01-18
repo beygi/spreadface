@@ -86,7 +86,7 @@ $(document).ready(function() {
     });
 
     $("body").delegate("td.ui-state-highlight", "keyup", function(e) {
-        console.log(e);
+        //console.log(e);
         if (e.key == 'Escape') {
             //TODO : i dont like this manner
             $('body').click();
