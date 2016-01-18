@@ -2,7 +2,7 @@ $(document).ready(function() {
     //determinate keypresses
     $("body").keyup(function(e) {
         //check for every highlighted cell
-        if ($(".ui-state-highlight").not('.ui-cell-editing').length == 1) {
+        if ($("td.ui-state-highlight").not('.ui-cell-editing').length == 1) {
             var metaKeys = [
                 "Backspace",
                 "Capslock",
@@ -31,7 +31,7 @@ $(document).ready(function() {
                 "PageDown",
                 "PageUp"
             ];
-            var cell = $(".ui-state-highlight").not('.ui-cell-editing');
+            var cell = $("td.ui-state-highlight").not('.ui-cell-editing');
             if (e.key == 'F2') {
                 cell.click();
             } else if (e.key == 'ArrowRight') {
@@ -85,7 +85,7 @@ $(document).ready(function() {
         $('.ui-editable-column').not(this).removeClass('ui-state-highlight');
     });
 
-    $("body").delegate(".ui-state-highlight", "keyup", function(e) {
+    $("body").delegate("td.ui-state-highlight", "keyup", function(e) {
         console.log(e);
         if (e.key == 'Escape') {
             //TODO : i dont like this manner
