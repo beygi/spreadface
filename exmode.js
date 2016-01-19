@@ -2,7 +2,7 @@ $(document).ready(function() {
     //determinate keypresses
     $("body").keyup(function(e) {
         //check for every highlighted cell
-        if ($("td.ui-state-highlight").not('.ui-cell-editing').length == 1 && ($(':focus').length == 0 || ($(':focus').length == 1 && $(':focus').parent().parent().css('display')=='none'))  ) {
+        if ($("td.ui-state-highlight").not('.ui-cell-editing').length == 1 && !$('.atcmplt_code_khodro input').is(':focus')) {
             var metaKeys = [
                 "Backspace",
                 "Capslock",
