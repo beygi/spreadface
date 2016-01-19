@@ -40,7 +40,7 @@ $(document).ready(function() {
                     cell.prev().addClass('ui-state-highlight');
                 }
             } else if (e.key == 'ArrowLeft') {
-				if (cell.next().length == 1) {
+                if (cell.next().length == 1) {
                     cell.removeClass('ui-state-highlight');
                     cell.next().addClass('ui-state-highlight');
                 }
@@ -54,7 +54,7 @@ $(document).ready(function() {
                     cell.removeClass('ui-state-highlight');
                     cell.parent().prev().find('td').eq(cell.index()).addClass('ui-state-highlight');
                 }
-            } else if ( metaKeys.indexOf( e.key) == -1) {
+            } else if (metaKeys.indexOf(e.key) == -1) {
                 cell.click();
                 cell.find('input').val(e.key);
             }
@@ -63,7 +63,7 @@ $(document).ready(function() {
 
 
 
-		//edit mode
+        //edit mode
 
         if ($("td.ui-cell-editing").length == 1 && !$('.atcmplt_code_khodro input').is(':focus')) {
             var cell = $("td.ui-cell-editing");
@@ -74,7 +74,7 @@ $(document).ready(function() {
 
                 }
             } else if (e.key == 'ArrowLeft') {
-				if (cell.next().length == 1) {
+                if (cell.next().length == 1) {
                     cell.removeClass('ui-state-highlight');
                     cell.next().click();
                 }
@@ -97,7 +97,7 @@ $(document).ready(function() {
 
     $("body").delegate(".ui-editable-column", "click", function(e) {
         $('.ui-editable-column').not(this).removeClass('ui-state-highlight');
-		fixCells();
+        fixCells();
     });
 
     $("body").delegate("td.ui-state-highlight", "keyup", function(e) {
@@ -116,27 +116,27 @@ $(document).ready(function() {
  fix cells function , it should call after add table
 */
 
-    function fixCells() {
-		$('.ui-cell-editor-output').attrchange({
-			trackValues: true,
-			/* Default to false, if set to true the event object is
+function fixCells() {
+    $('.ui-cell-editor-output').attrchange({
+        trackValues: true,
+        /* Default to false, if set to true the event object is
 					updated with old and new value.*/
-			callback: function(event) {
-				if (event.newValue == 'display: block;') {
-					//console.log($(this).parent().parent());
-					//$(this).parent().parent().removeClass('ui-state-highlight');
-					if ($('td.ui-state-highlight').length == 0 ) {
-						$(this).parent().parent().addClass('ui-state-highlight');
-					}
+        callback: function(event) {
+            if (event.newValue == 'display: block;') {
+                //console.log($(this).parent().parent());
+                //$(this).parent().parent().removeClass('ui-state-highlight');
+                if ($('td.ui-state-highlight').length == 0) {
+                    $(this).parent().parent().addClass('ui-state-highlight');
+                }
 
-					//if ($(this).parent().parent().parent().next().length==1) {
-					//    $(this).parent().parent().removeClass('ui-state-highlight');
-					//    $(this).parent().parent().parent().next().find('td').eq($(this).index()).click();
-					//}
-				}
-			}
-		});
-	}
+                //if ($(this).parent().parent().parent().next().length==1) {
+                //    $(this).parent().parent().removeClass('ui-state-highlight');
+                //    $(this).parent().parent().parent().next().find('td').eq($(this).index()).click();
+                //}
+            }
+        }
+    });
+}
 /*
 A simple jQuery function that can add listeners on attribute change.
 http://meetselva.github.io/attrchange/
