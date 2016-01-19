@@ -60,6 +60,37 @@ $(document).ready(function() {
             }
 
         }
+
+
+
+		//edit mode
+
+        if ($("td.ui-cell-editing").length == 1 && !$('.atcmplt_code_khodro input').is(':focus')) {
+            var cell = $("td.ui-cell-editing");
+            if (e.key == 'ArrowRight') {
+                if (cell.prev().length == 1) {
+                    cell.removeClass('ui-state-highlight');
+                    cell.prev().click();
+
+                }
+            } else if (e.key == 'ArrowLeft') {
+				if (cell.next().length == 1) {
+                    cell.removeClass('ui-state-highlight');
+                    cell.next().click();
+                }
+            } else if (e.key == 'ArrowDown' || e.key == 'Enter') {
+                if (cell.parent().next().length == 1) {
+                    cell.removeClass('ui-state-highlight');
+                    cell.parent().next().find('td').eq(cell.index()).click();
+                }
+            } else if (e.key == 'ArrowUp') {
+                if (cell.parent().prev().length == 1) {
+                    cell.removeClass('ui-state-highlight');
+                    cell.parent().prev().find('td').eq(cell.index()).click();
+                }
+            }
+        }
+
     });
 
     fixCells();
@@ -94,8 +125,10 @@ $(document).ready(function() {
 				if (event.newValue == 'display: block;') {
 					//console.log($(this).parent().parent());
 					//$(this).parent().parent().removeClass('ui-state-highlight');
+					if ($('td.ui-state-highlight').length == 0 ) {
+						$(this).parent().parent().addClass('ui-state-highlight');
+					}
 
-					$(this).parent().parent().addClass('ui-state-highlight');
 					//if ($(this).parent().parent().parent().next().length==1) {
 					//    $(this).parent().parent().removeClass('ui-state-highlight');
 					//    $(this).parent().parent().parent().next().find('td').eq($(this).index()).click();
